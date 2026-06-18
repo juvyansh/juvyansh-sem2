@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Number Checker</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    text-align:center;
+    width:350px;
+}
+
+h1{
+    color:#333;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:2px solid #ddd;
+    border-radius:8px;
+    margin-bottom:15px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#667eea;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#5563d8;
+}
+
+.result{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Prime Number Checker</h1>
+
+    <input type="number"
+           id="number"
+           placeholder="Enter a number">
+
+    <button onclick="checkPrime()">
+        Check Prime
+    </button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+
+function checkPrime(){
+
+    let num =
+    parseInt(document.getElementById("number").value);
+
+    let result =
+    document.getElementById("result");
+
+    if(isNaN(num)){
+        result.innerHTML =
+        "Please enter a valid number!";
+        result.style.color="red";
+        return;
+    }
+
+    if(num <= 1){
+        result.innerHTML =
+        num + " is NOT a Prime Number";
+        result.style.color="red";
+        return;
+    }
+
+    let prime = true;
+
+    for(let i=2; i<=Math.sqrt(num); i++){
+
+        if(num % i === 0){
+            prime = false;
+            break;
+        }
+    }
+
+    if(prime){
+        result.innerHTML =
+        "✅ " + num + " is a Prime Number";
+        result.style.color="green";
+    }
+    else{
+        result.innerHTML =
+        "❌ " + num + " is NOT a Prime Number";
+        result.style.color="red";
+    }
+}
+
+</script>
+
+</body>
+</html>
